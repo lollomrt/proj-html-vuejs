@@ -1,16 +1,43 @@
 <script>
 import AppHeader from './components/AppHeader.vue'
+import AppMain from './components/AppMain.vue'
+import AppFooter from './components/AppFooter.vue'
 export default {
   components: {
-    AppHeader
+    AppHeader,
+    AppMain,
+    AppFooter
   },
   data() {
     return {
+      social: [
+        {
+          icon: 'fa-brands fa-twitter',
+          url: '#',
+          title: 'Twitter'
+        },
+        {
+          icon: 'fa-brands fa-facebook-f',
+          url: '#',
+          title: 'Facebook'
+        },
+        {
+          icon: 'fa-brands fa-instagram',
+          url: '#',
+          title: 'Instagram'
+        },
+        {
+          icon: 'fa-brands fa-linkedin-in',
+          url: '#',
+          title: 'Linkedin'
+        }
+      ],
       navigation: {
         left_navigation: [
           {
             titolo: 'Home',
             url: '#',
+            active: false,
             submenu: [
               'Main Home',
               'Italian Restaurant',
@@ -23,6 +50,7 @@ export default {
           {
             titolo: 'Pages',
             url: '#',
+            active: false,
             submenu: [
               'about us',
               'our services',
@@ -40,6 +68,7 @@ export default {
           {
             titolo: 'Menu',
             url: '#',
+            active: false,
             submenu: [
               'list type',
               'list layouts',
@@ -53,6 +82,7 @@ export default {
           {
             titolo: 'Event',
             url: '#',
+            active: false,
             submenu: [
               'event list',
               'event single',
@@ -61,6 +91,7 @@ export default {
           {
             titolo: 'blog',
             url: '#',
+            active: false,
             submenu: [
               'right sidebar',
               'left sidebar',
@@ -71,6 +102,7 @@ export default {
           {
             titolo: 'landing',
             url: '#',
+            active: false,
             submenu: null
           }
         ]
@@ -83,9 +115,11 @@ export default {
 <template>
   <div>
     <AppHeader :navig="navigation" />
+    <AppMain />
+    <AppFooter :socialArray="social" />
   </div>
 </template>
 
 <style lang="scss">
-
+@use './styles/generals.scss' as *;
 </style>
