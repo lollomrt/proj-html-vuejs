@@ -37,7 +37,7 @@ export default {
           {
             titolo: 'Home',
             url: '#',
-            active: false,
+            active: true,
             submenu: [
               'Main Home',
               'Italian Restaurant',
@@ -106,7 +106,42 @@ export default {
             submenu: null
           }
         ]
-      }
+      },
+      autoscroll: null,
+      pizzaJumbotron: [
+        {
+          img1: 'src/assets/img/h3-rev-img-1.png',
+          img2: 'src/assets/img/h3-rev-img-2.png'
+        },
+        {
+          img1: 'src/assets/img/h3-rev-img-3.png',
+          img2: 'src/assets/img/h3-rev-img-4.png'
+        },
+        {
+          img1: 'src/assets/img/h3-rev-img-5.png',
+          img2: 'src/assets/img/h3-rev-img-6.png'
+        },
+      ],
+      cardSection1: [
+        'src/assets/img/h3-img-1.jpg',
+        'src/assets/img/h3-img-2.jpg',
+        'src/assets/img/h3-img-3.jpg',
+        'src/assets/img/h3-img-4.jpg',
+      ],
+      reviews: [
+        {
+          titolo: '“Forget the trendy pizza shops, This hidden spot makes the best New York-style pizza slice in naples”',
+          fromUser: 'Waschington Post 2018'
+        },
+        {
+          titolo: '“Is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry”',
+          fromUser: 'Waschington Post 2019'
+        },
+        {
+          titolo: '“It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.”',
+          fromUser: 'Waschington Post 2020'
+        }
+      ]
     }
   }
 }
@@ -115,7 +150,7 @@ export default {
 <template>
   <div>
     <AppHeader :navig="navigation" />
-    <AppMain />
+    <AppMain :pizzas="this.pizzaJumbotron" :cs1="cardSection1" :reviewsCarousel="reviews" />
     <AppFooter :socialArray="social" />
   </div>
 </template>

@@ -28,7 +28,7 @@ export default {
                 <ul>
                     <li v-for="(element, index) in navig.left_navigation" :key="index" @mouseenter="getHover(index)" @mouseleave="active = false"><a :href="element.url">{{ element.titolo }}</a>
                         <div v-if="element.submenu !== 'nul'" class="submenu">
-                            <ul v-if="navig.left_navigation.active">
+                            <ul v-if="navig.left_navigation.active == true">
                                 <li v-for="(item, i) in element.submenu" :key="i">{{ item }}</li>
                             </ul>
                         </div>
