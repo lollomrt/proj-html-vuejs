@@ -315,9 +315,9 @@ export default {
         
         <div class="container-clienti">
             <Carousel class="slider-prova" :items-to-show="5" snapAlign="center" :wrap-around="true" autoplay="5000" transition="500" pauseAutoplayOnHover="true">
-                <Slide v-for="(elem, index) in clienti" :key="index">
-                    <div class="sp" @mouseover="getHoverBtn(index)" @mouseleave="store.active_btn = 'null'">
-                        <img :src="clienti[index]" alt="">    
+                <Slide v-for="(ele, nume) in clienti" :key="nume">
+                    <div class="sp" @mouseover="getHoverBtn(nume)" @mouseleave="store.active_btn = 'null'">
+                        <img :src="clienti[nume]" alt="">    
                     </div>
                 </Slide>    
             </Carousel>
@@ -331,18 +331,18 @@ export default {
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut blandit arcu in pretium molestie. Interdum et malesuada fames ac.</p>
             </div>
             <Carousel class="slider-prova" :items-to-show="5.9" snapAlign="center" :wrap-around="true" autoplay="2000" transition="500" pauseAutoplayOnHover="true">
-                <Slide v-for="(elem, index) in pizze" :key="index">
-                    <div class="sp" @mouseover="getHoverBtn(index)" @mouseleave="store.active_btn = 'null'">
+                <Slide v-for="(ele, nume) in pizze" :key="nume">
+                    <div class="sp" @mouseover="getHoverBtn(nume)" @mouseleave="store.active_btn = 'null'">
                         <div class="container-image-pizza">
-                            <img :src="elem.foto" alt="">
+                            <img :src="ele.foto" alt="">
                         </div>
                         <div class="text-container">
-                            <h3 class="nome-pizza">{{ elem.titolo }}</h3>
-                            <h3 class="prezzo-pizza">{{ elem.prezzo }}</h3>
+                            <h3 class="nome-pizza">{{ ele.titolo }}</h3>
+                            <h3 class="prezzo-pizza">{{ ele.prezzo }}</h3>
                         </div>
                         <div class="container-btn">
-                            <button v-if="store.active_btn === index" class="btn btn1">view products</button>
-                            <button v-if="store.active_btn === index" class="btn btn2">quickview</button>
+                            <button v-if="store.active_btn === nume" class="btn btn1">view products</button>
+                            <button v-if="store.active_btn === nume" class="btn btn2">quickview</button>
                         </div>
                     </div>
                 </Slide>    
