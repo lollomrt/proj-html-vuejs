@@ -24,32 +24,38 @@ export default {
             store,
             pizze: [
                 {
-                    foto: '/src/assets/img/h3-product-img-1a-100x100.png',
+                    // foto: '/src/assets/img/h3-product-img-1a-100x100.png',
+                    foto: 'https://donpeppe.qodeinteractive.com/wp-content/uploads/2019/10/h3-product-img-1a.png',
                     titolo: 'bismark',
                     prezzo: '30$',
                 },
                 {
-                    foto: '/src/assets/img/h3-product-img-2a-150x150.png',
+                    // foto: '/src/assets/img/h3-product-img-2a-150x150.png',
+                    foto: 'https://donpeppe.qodeinteractive.com/wp-content/uploads/2019/10/h3-product-img-2a.png',
                     titolo: 'fiori di zucca',
                     prezzo: '30$',
                 },
                 {
-                    foto: '/src/assets/img/h3-product-img-3a-150x150.png',
+                    // foto: '/src/assets/img/h3-product-img-3a-150x150.png',
+                    foto: 'https://donpeppe.qodeinteractive.com/wp-content/uploads/2019/10/h3-product-img-3a.png',
                     titolo: 'campagnola',
                     prezzo: '30$',
                 },
                 {
-                    foto: '/src/assets/img/h3-product-img-4a-150x150.png',
+                    // foto: '/src/assets/img/h3-product-img-4a-150x150.png',
+                    foto: 'https://donpeppe.qodeinteractive.com/wp-content/uploads/2019/10/h3-product-img-4a.png',
                     titolo: 'pizza tartufata',
                     prezzo: '30$',
                 },
                 {
-                    foto: '/src/assets/img/h3-product-img-5a-150x150.png',
+                    // foto: '/src/assets/img/h3-product-img-5a-150x150.png',
+                    foto: 'https://donpeppe.qodeinteractive.com/wp-content/uploads/2019/10/h3-product-img-5a.png',
                     titolo: 'francescana',
                     prezzo: '30$',
                 },
                 {
-                    foto: '/src/assets/img/h3-product-img-6a-100x100.png',
+                    // foto: '/src/assets/img/h3-product-img-6a-100x100.png',
+                    foto: 'https://donpeppe.qodeinteractive.com/wp-content/uploads/2019/10/h3-product-img-6a.png',
                     titolo: 'valdostana',
                     prezzo: '30$',
                 }
@@ -190,6 +196,9 @@ export default {
         getHoverCard(indice) {
             store.active_index_card = indice
         },
+        getHoverBtn(indicex) {
+            store.active_btn = indicex
+        },
 
     }
 }
@@ -296,17 +305,30 @@ export default {
         </div>
 
         <!-- Slider infinito pizze -->
-
-        <Carousel class="slider-prova" :items-to-show="5.3" :wrap-around="true">
-            <Slide v-for="(elem, index) in pizze" :key="index">
-                <div class="container-single-pizza">
-                    <div cclass="container-image-pizza">
-                        <img :src="elem.foto" alt="">
+        <div class="container-carousel-pizza">
+            <div class="pizza-title-container">
+                <h5>CHOOSE YOUR FLAVOR</h5>
+                <h1>THE BEST PIZZA MENU IN TOWN</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut blandit arcu in pretium molestie. Interdum et malesuada fames ac.</p>
+            </div>
+            <Carousel class="slider-prova" :items-to-show="5.9" snapAlign="center" :wrap-around="true" autoplay="2000" transition="500" pauseAutoplayOnHover="true">
+                <Slide v-for="(elem, index) in pizze" :key="index">
+                    <div class="sp" @mouseover="getHoverBtn(index)" @mouseleave="store.active_btn = 'null'">
+                        <div class="container-image-pizza">
+                            <img :src="elem.foto" alt="">
+                        </div>
+                        <div class="text-container">
+                            <h3 class="nome-pizza">{{ elem.titolo }}</h3>
+                            <h3 class="prezzo-pizza">{{ elem.prezzo }}</h3>
+                        </div>
+                        <div class="container-btn">
+                            <button v-if="store.active_btn === index" class="btn btn1">view products</button>
+                            <button v-if="store.active_btn === index" class="btn btn2">quickview</button>
+                        </div>
                     </div>
-                    <h1>{{ elem.titolo }}</h1>
-                </div>
-            </Slide>    
+                </Slide>    
         </Carousel>
+        </div>
 
         <!-- Delish Section -->
 
@@ -734,8 +756,96 @@ main {
                 border: none;
                 margin-left: 2rem;
             }
+        }
+    }
 
+    .container-carousel-pizza {
+        width: 100%;
+        padding: 6rem 0 8rem 0;
 
+        .pizza-title-container {
+            width: 40%;
+            margin: 0 auto;
+            text-align: center;
+            padding-bottom: 2rem;
+
+            h1 {
+                font-size: 2.4rem;
+                padding: 0.5rem 0;
+            }
+
+            h5 {
+                color: $color-primary;
+            }
+        }
+    }
+
+    .sp {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        cursor: pointer;
+
+        &:hover .container-image-pizza {
+            background-image: url(https://donpeppe.qodeinteractive.com/wp-content/themes/donpeppe/assets/img/yum.png);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .nome-pizza {
+            color: $secondary-color;
+        }
+
+        .prezzo-pizza {
+            color: $color-primary;
+        }
+
+        .container-image-pizza {
+            width: 100%;
+            padding: 2rem 2rem 0 2rem;
+
+            img {
+                width: 100%;
+            }
+
+        }
+
+        .container-btn {
+            display: flex;
+            gap: 0.5rem;
+            width: 100%;
+            min-height: 52px;
+
+            .btn {
+                border: none;
+                padding: 1rem 0;
+                width: 50%;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-family: "Oswald";
+                cursor: pointer;
+            }
+
+            .btn1 {
+                background-color: $color-primary;
+                color: $white;
+
+                &:hover {
+                    background-color: $color-primary-hover;
+                }
+            }
+
+            .btn2 {
+                background-color: #f7f7f2;
+                color: #000;
+
+                &:hover {
+                    background-color: $white-hover;
+                }
+            }
         }
     }
 }

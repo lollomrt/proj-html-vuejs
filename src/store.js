@@ -7,5 +7,6 @@ export const store = reactive({
     autoscrollReview: null,
     active_index_card: null,
     active_index_s: 0,
+    active_btn: 0,
     active: false,
 })
