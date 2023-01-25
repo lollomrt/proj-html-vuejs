@@ -1,11 +1,17 @@
 <script>
+import { defineComponent } from 'vue'
+import { Carousel, Navigation, Slide } from 'vue3-carousel'
+import 'vue3-carousel/dist/carousel.css'
 
 import { store } from '../store.js'
 import singleCard from './singleCard.vue'
 export default {
 
     components: {
-        singleCard
+        singleCard,
+        Carousel,
+        Slide,
+        Navigation,
     },
 
     props: {
@@ -16,6 +22,7 @@ export default {
     data() {
         return {
             store,
+
             people: [
                 {
                     image: '/src/assets/img/h1-team-1a-700x700.jpg',
@@ -256,6 +263,14 @@ export default {
         <div class="cards-container">
             <singleCard v-for="(item, z) in people" :key="z" :people="item"></singleCard>
         </div>
+
+        <!-- Slider infinito pizze -->
+
+        <Carousel class="slider-prova" :items-to-show="5.3" :wrap-around="true">
+            <Slide v-for="slide in 10" :key="slide">
+                <div class="carousel__item">{{ slide }}</div>
+            </Slide>    
+        </Carousel>
 
         <!-- Delish Section -->
 
