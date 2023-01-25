@@ -2,16 +2,19 @@
 export default {
     data() {
         return {
-            active_index: null
+            active_index_left: 'null',
+            active_index_right: 'null'
         }
     },
     props: {
         navig: Object
     },
     methods: {
-        getHover(i) {
-            this.active_index = i
-            this.navig.left_navigation[this.active_index].active == true
+        getHoverLeft(i) {
+            this.active_index_left = i
+        },
+        getHoverRight(i) {
+            this.active_index_right = i
         }
     }
 
@@ -25,21 +28,21 @@ export default {
             <a href="#">order online</a>
             </button>
             <nav class="nav-container">      
-                <ul>
-                    <li v-for="(element, index) in navig.left_navigation" :key="index" @mouseenter="getHover(index)" @mouseleave="active = false"><a :href="element.url">{{ element.titolo }}</a>
+                <ul class="list-left">
+                    <li class="submenu-parent" v-for="(element, index) in navig.left_navigation" :key="index" :class="element.active === true ? 'active' : ''" @mouseover="getHoverLeft(index)" @mouseleave="this.active_index_left = 'null'"><a :href="element.url">{{ element.titolo }}</a>
                         <div v-if="element.submenu !== 'nul'" class="submenu">
-                            <ul v-if="navig.left_navigation.active == true">
-                                <li v-for="(item, i) in element.submenu" :key="i">{{ item }}</li>
+                            <ul v-if="active_index_left === index">
+                                <li class="item" v-for="(item, i) in element.submenu" :key="i">{{ item }}</li>
                             </ul>
                         </div>
                     </li>                       
                 </ul>       
                 <img src="/public/h5-logo-divided-header.png" alt="">        
-                <ul>
-                    <li v-for="(element, index) in navig.right_navigation" :key="index"><a :href="element.url">{{ element.titolo }}</a>
-                        <div v-if="element.submenu !== 'nul'" class="submenu">
-                            <ul v-if="hover">
-                                <li v-for="(item, i) in element.submenu" :key="i">{{ item }}</li>
+                <ul class="list-right">
+                    <li class="submenu-parent" v-for="(element, index) in navig.right_navigation" :key="index" @mouseover="getHoverRight(index)" @mouseleave="this.active_index_right = 'null'"><a :href="element.url">{{ element.titolo }}</a>
+                        <div v-if="element.submenu !== null" class="submenu">
+                            <ul v-if="active_index_right === index">
+                                <li class="item" v-for="(item, i) in element.submenu" :key="i">{{ item }}</li>
                             </ul>
                         </div>
                     </li>                       
@@ -74,11 +77,19 @@ header {
     align-items: center;
     height: 18vh;
     position: absolute;
-    z-index: 1;
+    z-index: 10;
     font-size: 0.8rem;
+
+    .active::before {
+        content: url(/public/svg/svg-0.svg);
+        filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(360deg) brightness(100%) contrast(200%);
+        width: 1.5rem;
+        margin-right: 0.4rem
+    }
 
     .header-container {
         display: flex;
+        height: 100%;
         width: 1200px;
         justify-content: space-between;
         align-items: center;
@@ -104,6 +115,8 @@ header {
             width: 50%;
             height: 100%;
         }
+
+
 
         ul {
             display: flex;
@@ -172,6 +185,54 @@ header {
             }
 
         }
+    }
+
+    .submenu-parent {
+        position: relative;
+
+        .submenu {
+            position: absolute;
+            width: 250px;
+            top: 100%;
+            left: 0;
+            background-color: #1b1b1b;
+
+
+            ul {
+                border-top: 0.2rem solid $color-primary;
+                padding: 2.5rem;
+                gap: 1rem;
+                font-family: "Open Sans";
+                text-transform: capitalize;
+                font-size: 0.8rem;
+                display: flex;
+                align-items: flex-start;
+                width: 100%;
+                flex-direction: column;
+
+                li {
+                    width: 100%;
+                    justify-content: flex-start;
+                }
+
+                .item {
+                    color: #a8a8a8;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: $white
+                    }
+
+                    &:hover::before {
+                        content: url(/public/svg/svg-0.svg);
+                        filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(360deg) brightness(100%) contrast(200%);
+                        width: 1.5rem;
+                        margin-right: 0.4rem
+                    }
+                }
+            }
+        }
+
     }
 
 }
