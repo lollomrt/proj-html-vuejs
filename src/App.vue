@@ -143,18 +143,47 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    toTop: function () {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
   }
 }
 </script>
 
 <template>
-  <div>
+  <div class="wrapper">
     <AppHeader :navig="navigation" />
     <AppMain :pizzas="this.pizzaJumbotron" :cs1="cardSection1" :reviewsCarousel="reviews" />
     <AppFooter :socialArray="social" />
+    <div class="to-top-btn" @click="toTop">
+      <img src="/public/svg/svg-4.svg" alt="">
+    </div>
   </div>
 </template>
 
 <style lang="scss">
 @use './styles/generals.scss' as *;
+
+.wrapper {
+  position: relative;
+
+  .to-top-btn {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background-color: #f6f7f2;
+    cursor: pointer;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 2rem;
+    right: 2rem;
+  }
+}
 </style>

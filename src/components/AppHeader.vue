@@ -100,6 +100,11 @@ header {
             border: none;
             padding: 1rem 0;
             width: 15%;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $color-primary-hover;
+            }
 
             a {
                 text-decoration: none;
@@ -152,6 +157,7 @@ header {
             gap: 2rem;
             color: $white;
             height: 100%;
+            cursor: pointer;
 
             .single-icon {
                 display: flex;
