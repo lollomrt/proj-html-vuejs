@@ -22,7 +22,38 @@ export default {
     data() {
         return {
             store,
-
+            pizze: [
+                {
+                    foto: '/src/assets/img/h3-product-img-1a-100x100.png',
+                    titolo: 'bismark',
+                    prezzo: '30$',
+                },
+                {
+                    foto: '/src/assets/img/h3-product-img-2a-150x150.png',
+                    titolo: 'fiori di zucca',
+                    prezzo: '30$',
+                },
+                {
+                    foto: '/src/assets/img/h3-product-img-3a-150x150.png',
+                    titolo: 'campagnola',
+                    prezzo: '30$',
+                },
+                {
+                    foto: '/src/assets/img/h3-product-img-4a-150x150.png',
+                    titolo: 'pizza tartufata',
+                    prezzo: '30$',
+                },
+                {
+                    foto: '/src/assets/img/h3-product-img-5a-150x150.png',
+                    titolo: 'francescana',
+                    prezzo: '30$',
+                },
+                {
+                    foto: '/src/assets/img/h3-product-img-6a-100x100.png',
+                    titolo: 'valdostana',
+                    prezzo: '30$',
+                }
+            ],
             people: [
                 {
                     image: '/src/assets/img/h1-team-1a-700x700.jpg',
@@ -267,8 +298,13 @@ export default {
         <!-- Slider infinito pizze -->
 
         <Carousel class="slider-prova" :items-to-show="5.3" :wrap-around="true">
-            <Slide v-for="slide in 10" :key="slide">
-                <div class="carousel__item">{{ slide }}</div>
+            <Slide v-for="(elem, index) in pizze" :key="index">
+                <div class="container-single-pizza">
+                    <div cclass="container-image-pizza">
+                        <img :src="elem.foto" alt="">
+                    </div>
+                    <h1>{{ elem.titolo }}</h1>
+                </div>
             </Slide>    
         </Carousel>
 
