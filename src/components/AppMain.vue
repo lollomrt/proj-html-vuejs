@@ -22,6 +22,13 @@ export default {
     data() {
         return {
             store,
+            clienti: [
+                '/src/assets/img/h1-clients-img-1.png',
+                '/src/assets/img/h1-clients-img-2.png',
+                '/src/assets/img/h1-clients-img-3.png',
+                '/src/assets/img/h1-clients-img-4.png',
+                '/src/assets/img/h1-clients-img-5.png',
+            ],
             pizze: [
                 {
                     // foto: '/src/assets/img/h3-product-img-1a-100x100.png',
@@ -304,6 +311,18 @@ export default {
             <singleCard v-for="(item, z) in people" :key="z" :people="item"></singleCard>
         </div>
 
+        <!-- Slider clienti -->
+        
+        <div class="container-clienti">
+            <Carousel class="slider-prova" :items-to-show="5" snapAlign="center" :wrap-around="true" autoplay="5000" transition="500" pauseAutoplayOnHover="true">
+                <Slide v-for="(elem, index) in clienti" :key="index">
+                    <div class="sp" @mouseover="getHoverBtn(index)" @mouseleave="store.active_btn = 'null'">
+                        <img :src="clienti[index]" alt="">    
+                    </div>
+                </Slide>    
+            </Carousel>
+        </div>
+
         <!-- Slider infinito pizze -->
         <div class="container-carousel-pizza">
             <div class="pizza-title-container">
@@ -327,7 +346,7 @@ export default {
                         </div>
                     </div>
                 </Slide>    
-        </Carousel>
+            </Carousel>
         </div>
 
         <!-- Delish Section -->
@@ -846,6 +865,16 @@ main {
                     background-color: $white-hover;
                 }
             }
+        }
+    }
+
+    .container-clienti {
+        width: 100%;
+        padding: 5rem 10rem;
+        background-color: #f7f7f2;
+
+        img {
+            width: 100%;
         }
     }
 }
