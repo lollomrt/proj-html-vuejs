@@ -1,6 +1,6 @@
 .fade-scale-enter-active,
 .fade-scale-leave-active {
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s linear;
 }
 
 .fade-scale-enter-from,
@@ -23,10 +23,10 @@
 
 .fade-scale-enter-active .eye-background,
 .fade-scale-leave-active .eye-background {
-    animation: grow 0.3s ease;
+    animation: grow 0.3s linear;
 }
 
 .fade-scale-enter-from .eye-background,
 .fade-scale-leave-to .eye-background {
-    animation: grow 0.3s ease reverse;
+    animation: grow 0.3s linear reverse;
 }

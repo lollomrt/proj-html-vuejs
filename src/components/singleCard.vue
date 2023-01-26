@@ -16,15 +16,17 @@ export default {
 <template lang="">
     <div class="card" @mouseenter="ovr = true" @mouseleave="ovr = false">
         <img :src="people.image" alt="">
-        <div class="hover-container" v-if="ovr">
-            <div class="hover-cont">
-                <h2>{{ people.name }}</h2>
-                <span>{{ people.job }}</span>
-                <div class="social-container">
-                    <i v-for="(element, index) in people.social" :key="index" :class="element.icon"></i>
-                </div>
-            </div>  
-        </div>
+        <transition name="fade-scale">
+            <div class="hover-container" v-if="ovr">
+                <div class="hover-cont">
+                    <h2>{{ people.name }}</h2>
+                    <span>{{ people.job }}</span>
+                    <div class="social-container">
+                        <i v-for="(element, index) in people.social" :key="index" :class="element.icon"></i>
+                    </div>
+                </div>  
+            </div>
+        </transition>
     </div>   
 </template>
 
