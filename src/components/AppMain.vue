@@ -233,11 +233,13 @@ export default {
         <div class="cards-container-1">
             <div v-for="(el, j) in cs1" :key="ind" class="single-card-1" @mouseover="getHoverCard(j)" @mouseleave="store.active_index_card = 'null'">
                 <img :src="el" alt="">
-                <div class="hover-card" v-if="store.active_index_card === j">
-                    <div class="eye-background">
-                        <i class="fa-regular fa-eye"></i>
+                <transition name="fade-scale">
+                    <div class="hover-card" v-if="store.active_index_card === j">
+                        <div class="eye-background">
+                            <i class="fa-regular fa-eye"></i>
+                        </div>
                     </div>
-                </div>
+                </transition>
             </div>
         </div>
 

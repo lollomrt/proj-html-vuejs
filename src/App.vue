@@ -168,6 +168,7 @@ export default {
 
 <style lang="scss">
 @use './styles/generals.scss' as *;
+@use './styles/animations.scss' as *;
 
 .wrapper {
   position: relative;

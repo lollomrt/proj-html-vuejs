@@ -1,0 +1,32 @@
+.fade-scale-enter-active,
+.fade-scale-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.fade-scale-enter-from,
+.fade-scale-leave-to {
+    opacity: 0;
+}
+
+@keyframes grow {
+    from {
+        height: 0px;
+        width: 0px;
+
+    }
+
+    to {
+        height: 80px;
+        width: 80px;
+    }
+}
+
+.fade-scale-enter-active .eye-background,
+.fade-scale-leave-active .eye-background {
+    animation: grow 0.3s ease;
+}
+
+.fade-scale-enter-from .eye-background,
+.fade-scale-leave-to .eye-background {
+    animation: grow 0.3s ease reverse;
+}
